@@ -15,22 +15,28 @@ class _Quizstate extends State<Quiz>{
 
   // var activeScreen = const StartScreen();   
   //var activeScreen can't be used because we can't assign Startscreen to it, hence we the  more general Widget
-  Widget? activeScreen; // ? indicates that activeScreen can also be = to null
+  // Widget? activeScreen; // ? indicates that activeScreen can also be = to null
 
-  @override
-  void initState() {
-    activeScreen=StartScreen(switchScreen);
-    super.initState();
-  }
-
+  // @override
+  // void initState() {
+  //   activeScreen=StartScreen(switchScreen);
+  //   super.initState();
+  // }
+  var activeScreen = 'start-screen';
   void switchScreen(){
     setState(() {
-      activeScreen = const QuestionsScreen();
+      activeScreen = 'questions-Screen';
     });
   }
 
   @override
   Widget build(context){
+
+    Widget screenWidget = StartScreen(switchScreen);
+    if(activeScreen == 'questions-Screen'){
+      screenWidget = const QuestionsScreen();
+    }
+
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -44,7 +50,7 @@ class _Quizstate extends State<Quiz>{
               end:Alignment.topRight,
             ),
             ),
-          child: activeScreen,
+          child: screenWidget,
         ),
       ),
     );
