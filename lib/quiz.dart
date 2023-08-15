@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/data/questions.dart';
 import 'package:quiz/questions_screen.dart';
 import 'package:quiz/start_screen.dart';
 
@@ -24,7 +25,7 @@ class _Quizstate extends State<Quiz>{
   // }
 
 
-  final List<String> selectedAnswers = [];
+  List<String> selectedAnswers = [];   //final is not used because we're resetting the list to empty in chooseAnswer
   var activeScreen = 'start-screen';
 
   void switchScreen(){
@@ -35,6 +36,13 @@ class _Quizstate extends State<Quiz>{
 
   void chooseAnswer(String answer){
     selectedAnswers.add(answer);
+
+    if(selectedAnswers.length == questions.length){
+      setState(() {
+        activeScreen='start-screen';
+        selectedAnswers=[];
+      });
+    }
   }
 
   @override
