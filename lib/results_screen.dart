@@ -8,8 +8,7 @@ class ResultsScreen extends StatelessWidget{
 
   List<Map<String,Object>> getSummaryData(){
     final List<Map<String,Object>> summary = [];
-
-
+    //Map is similar to dictionary, use {} to create map
   for(var i=0;i<chosenAnswers.length;i++){
     summary.add
     (
@@ -17,6 +16,7 @@ class ResultsScreen extends StatelessWidget{
       'question_index':i,
       'question':questions[i].text,
       'correct_answer':questions[i].answers[0],
+      'user_answer':chosenAnswers[i],
       }
     );
   }
