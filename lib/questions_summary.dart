@@ -6,20 +6,25 @@ class QuestionsSummary extends StatelessWidget{
   final List<Map<String,Object>> summaryData;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: summaryData.map((data){
-        return Row(children: [
-          Text(   ((data['question_index'] as int) +1 ).toString()  ),
-          Expanded( // allows child widgets to take space constrained by 'Row' widget, its parent 
-            child: Column(children: [
-              Text(data['question']as String),
-              const SizedBox(height: 7),
-              Text(data['user_answer']as String),
-              Text(data['correct_answer']as String)
-            ],),
-          )
-        ]);
-      }).toList(),
+    return SizedBox(
+      height: 400,
+      child: SingleChildScrollView(
+        child: Column(
+          children: summaryData.map((data){
+            return Row(children: [
+              Text(   ((data['question_index'] as int) +1 ).toString()  ),
+              Expanded( // allows child widgets to take space constrained by 'Row' widget, its parent 
+                child: Column(children: [
+                  Text(data['question']as String),
+                  const SizedBox(height: 7),
+                  Text(data['user_answer']as String),
+                  Text(data['correct_answer']as String)
+                ],),
+              )
+            ]);
+          }).toList(),
+        ),
+      ),
     );
   }
 }
